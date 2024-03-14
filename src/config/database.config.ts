@@ -8,7 +8,7 @@ export interface IDatabaseConfig {
   file: string;
 }
 
-class DatabaseEnviromentVariables {
+class DatabaseEnvironmentVariables {
   @IsString()
   DATABASE_FILE: string;
 
@@ -19,7 +19,7 @@ class DatabaseEnviromentVariables {
   static fromEnv() {
     const { DATABASE_FILE = './var/app.db' } = process.env;
 
-    return new DatabaseEnviromentVariables(DATABASE_FILE);
+    return new DatabaseEnvironmentVariables(DATABASE_FILE);
   }
 
   toCconfigValues(): IDatabaseConfig {
@@ -33,7 +33,7 @@ export default registerAs<IDatabaseConfig>(
   DATABASE_CONFIG,
   (): IDatabaseConfig =>
     validateConfig(
-      DatabaseEnviromentVariables.fromEnv(),
-      DatabaseEnviromentVariables,
+      DatabaseEnvironmentVariables.fromEnv(),
+      DatabaseEnvironmentVariables,
     ).toCconfigValues(),
 );
