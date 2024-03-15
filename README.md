@@ -54,11 +54,13 @@ would be easier to take it for a test drive.
 ### API Details
 
 API endpoints are created for each of the following:
- - Getting all store items since their ids' are used to add the cart
- - Creating a new Cart
- - Getting an existing cart by id
- - adding an item to the cart
- - removing an item from the cart
+ - [StoreItemController](src/controllers/store-item.controller.ts)
+   - Getting all store items since their ids' are used to add the cart 
+ - [StoreCartController](src/controllers/store-cart.controller.ts)
+   - Creating a new Cart
+   - Getting an existing cart by id
+   - adding an item to the cart
+   - removing an item from the cart
 
 
 #### Important notes
