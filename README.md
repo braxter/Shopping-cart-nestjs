@@ -52,6 +52,7 @@ which could easily changed for any other since it is using `typeorm`. I included
 would be easier to take it for a test drive.
 
 ### API Details
+
 API endpoints are created for each of the following:
  - Getting all store items since their ids' are used to add the cart
  - Creating a new Cart
@@ -70,4 +71,17 @@ and add and remove, I went with that. It wouldn't be very hard to update logic t
 The controllers are very lean, passing the information directly to service that manages the entities.
 The services were designed to be as simple as possible to keep them easy to understand, and to allow easier mocking and testing.
 
+I chose to store the items in the cart with what is essentially a join table with some additional metadata,
+this relationship between the `StoreCart` and `StoreItems` will mean that the items can be updated without the
+need to modify any carts with the items in them.
+
 I went way overboard with the testing, it has unit tests for nearly everything as well as e2e tests.
+
+#### Area's of improvement
+
+The logic for calculating the item count, free item count and total price of items in cart after free items
+is currently located in [src/database/entities/store-cart.entity.ts](src/database/entities/store-cart.entity.ts), 
+It was placed in there with the idea of calculating and persisting those fields. I reconsidered that since it would
+mean that any changes to the number of free items, or how they are calculated would mean all the carts in the databas
+would no longer be accurate. I decided to calculate those fields before returning the response for this exercise, 
+I however think the idea of persisting the total might be a good idea still.
